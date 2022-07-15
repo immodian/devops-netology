@@ -8,3 +8,4 @@ line two
 - файл crash.log и любой файл начинающийся с crash и заканчивающийся .log
 - все фйлы с расширениями *.tfvars *.tfvars.json *_override.tf *_override.tf.json
 - файлы override.tf override.tf.json .terraformrc terraform.rc
+new line
