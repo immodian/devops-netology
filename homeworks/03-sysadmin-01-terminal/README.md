@@ -12,5 +12,14 @@ end
 9. 
 10. Команда `touch {0..99999}` создаст 100000 файлов. Создание 300000 файлов одной строкой не удалось, упёрлось в лимит `ARG_MAX`.
 11. a
-12. a
+12. 
+```
+vagrant@vagrant:~$ mkdir /tmp/new_path_directory
+vagrant@vagrant:~$ cp /bin/bash /tmp/new_path_directory/bash
+vagrant@vagrant:~$ PATH=/tmp/new_path_directory:$PATH
+vagrant@vagrant:~$ type -a bash
+bash is /tmp/new_path_directory/bash
+bash is /usr/bin/bash
+bash is /bin/bash
+```
 13. Команда `at` используется для назначения одноразового задания на заданное время, а команда `batch` — для назначения одноразовых задач, которые должны выполняться, когда загрузка системы становится меньше 0,8.
