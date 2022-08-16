@@ -15,6 +15,7 @@ systemd(1)─┬─ModemManager(706)─┬─{ModemManager}(714)
 ls > /dev/pts/1
 ```
 ## 5. Получится ли одновременно передать команде файл на stdin и вывести ее stdout в другой файл?
+Да, получится:
 ```
 vagrant@vagrant:~# echo "hello" > file
 vagrant@vagrant:~# cat < file > outfile
