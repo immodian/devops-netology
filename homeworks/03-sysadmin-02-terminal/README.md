@@ -29,3 +29,24 @@ hello
 root@vagrant:~# cat /proc/cpuinfo | grep sse
 flags: fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush mmx fxsr sse sse2 ht syscall nx rdtscp lm constant_tsc rep_good nopl xtopology nonstop_tsc cpuid tsc_known_freq pni pclmulqdq ssse3 cx16 pcid sse4_1 sse4_2 x2apic movbe popcnt aes xsave avx rdrand hypervisor lahf_lm abm 3dnowprefetch invpcid_single fsgsbase avx2 invpcid rdseed clflushopt md_clear flush_l1d arch_capabilities
 ```
+## 13. Например, так можно перенести в screen процесс, который вы запустили по ошибке в обычной SSH-сессии.
+Перенесу процесс `top` в screen:
+```
+vagrant@vagrant:~$ top
+ctrl + z
+vagrant@vagrant:~$ jobs -l
+[1]+  2485 Stopped                 top
+vagrant@vagrant:~$ bg
+[1]+ top &
+vagrant@vagrant:~$ ps -a
+    PID TTY          TIME CMD
+   1795 pts/3    00:00:00 sudo
+   1797 pts/3    00:00:00 su
+   1798 pts/3    00:00:00 bash
+   2485 pts/0    00:00:00 top
+   2496 pts/0    00:00:00 ps
+vagrant@vagrant:~$ disown top
+-bash: warning: deleting stopped job 1 with process group 2485
+vagrant@vagrant:~$ screen
+vagrant@vagrant:~$ reptyr 2485
+```
