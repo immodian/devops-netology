@@ -44,9 +44,19 @@ artem@serv1:~$ ls > /dev/tty1
 ## 11. Узнайте, какую наиболее старшую версию набора инструкций SSE поддерживает ваш процессор с помощью `/proc/cpuinfo`.
 Версия sse4_2
 ```
-root@vagrant:~# cat /proc/cpuinfo | grep sse
+root@vagrant:~# grep sse /proc/cpuinfo
 flags: fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush mmx fxsr sse sse2 ht syscall nx rdtscp lm constant_tsc rep_good nopl xtopology nonstop_tsc cpuid tsc_known_freq pni pclmulqdq ssse3 cx16 pcid sse4_1 sse4_2 x2apic movbe popcnt aes xsave avx rdrand hypervisor lahf_lm abm 3dnowprefetch invpcid_single fsgsbase avx2 invpcid rdseed clflushopt md_clear flush_l1d arch_capabilities
 ```
+## 12. При открытии нового окна терминала и vagrant ssh создается новая сессия и выделяется pty. Это можно подтвердить командой tty, которая упоминалась в лекции 3.2. Однако:
+```
+vagrant@netology1:~$ ssh localhost 'tty'
+not a tty
+``` 
+### Почитайте, почему так происходит, и как изменить поведение.
+
+По умолчанию, когда запускаете команду на удаленном компьютере с помощью ssh, для удаленного сеанса не выделяется TTY и, допустим,  ssh localhost 'pwd' отрабатывает. 
+Чтобы сработал запрос tty, нужно запустить команду с флагом -t (Force pseudo-terminal allocation)
+`ssh -t localhost 'tty'`
 ## 13. Например, так можно перенести в screen процесс, который вы запустили по ошибке в обычной SSH-сессии.
 Перенесу процесс `top` в screen:
 ```
