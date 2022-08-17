@@ -37,9 +37,31 @@ artem@serv1:~$ ls > /dev/tty1
 
 ## 7. Выполните команду `bash 5>&1`. К чему она приведет? Что будет, если вы выполните `echo netology > /proc/$$/fd/5`? Почему так происходит?
 Команда `bash 5>&1` создаст новый `bash`, в котором создан дескриптор 5 перенаправляющий вывод в `stdout`. И команда `echo netology > /proc/$$/fd/5` направляя в 5 дескриптор выводит на экран `netology`.
+## 8. Получится ли в качестве входного потока для pipe использовать только stderr команды, не потеряв при этом отображение stdout на pty? Напоминаем: по умолчанию через pipe передается только stdout команды слева от | на stdin команды справа. Это можно сделать, поменяв стандартные потоки местами через промежуточный новый дескриптор, который вы научились создавать в предыдущем вопросе.
+Получилось через два промежуточных дескриптора:
+```bash
+vagrant@vagrant:~$ ls /home 4>&2 5>&1 1>&4 2>&5 |grep file
+vagrant
+vagrant@vagrant:~$ ls /home1 4>&2 5>&1 1>&4 2>&5 |grep file
+ls: cannot access '/home1': No such file or directory
+```
 
 ## 9. Что выведет команда `cat /proc/$$/environ`? Как еще можно получить аналогичный по содержанию вывод?
 Данная команда выведет переменные текущего окружения. Получить эти переменные можно командой `env`.
+## 10. Используя `man`, опишите что доступно по адресам `/proc/<PID>/cmdline`, `/proc/<PID>/exe`.
+Исследую процесс ping 8.8.8.8 (pid 4813)
+```bash
+root@vagrant:/home/vagrant# ll /proc/4813/exe # указывает на исполняемый бинарник
+lrwxrwxrwx 1 root root 0 Aug 17 08:34 /proc/4813/exe -> /usr/bin/ping*
+root@vagrant:/home/vagrant# cat /proc/4813/cmdline # указывает на командную строку
+ping8.8.8.8
+```
+```
+/proc/[pid]/cmdline
+              This read-only file holds the complete command line for the process,  unless the process is a zombie.
+/proc/[pid]/exe
+              Under  Linux  2.2 and later, this file is a symbolic link containing the actual pathname of the executed command.
+```
 
 ## 11. Узнайте, какую наиболее старшую версию набора инструкций SSE поддерживает ваш процессор с помощью `/proc/cpuinfo`.
 Версия sse4_2
