@@ -42,7 +42,8 @@ while ((1==1)) # ошибка со скобкой
  if (($? != 0))
   then
   date >> curl.log
-  else break # выход из цикла
+  else 
+  break # выход из цикла
  fi
 sleep 1 # уменьшение частоты опроса
 done
