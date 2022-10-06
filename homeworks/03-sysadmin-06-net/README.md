@@ -27,9 +27,9 @@ HOST: stackoverflow.com
 ![img.png](img/1.png)
 ![img.png](img/2.png)
 
-Status Code: 301 Moved Permanently
-Время загрузки страницы: 1,52s  
-Дольше всего обрабаотывался: GET https://stackoverflow.com/ 468 ms
+- Status Code: 301 Moved Permanently
+- Время загрузки страницы: 1,52s  
+- Дольше всего обрабаотывался: GET https://stackoverflow.com/ 468 ms
 
 
 3. Какой IP адрес у вас в интернете?
