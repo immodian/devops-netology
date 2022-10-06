@@ -127,8 +127,8 @@ dns.google.             900     IN      RRSIG   A 8 2 900 20221024182720 2022100
 
 8. Проверьте PTR записи для IP адресов из задания 7. Какое доменное имя привязано к IP? воспользуйтесь утилитой `dig`
 
-8.8.4.4 - RTR 4.4.8.8.in-addr.arpa. имя dns.google.
-8.8.8.8 - RTR 8.8.8.8.in-addr.arpa. имя dns.google.
+- 8.8.4.4 - RTR 4.4.8.8.in-addr.arpa. имя dns.google.
+- 8.8.8.8 - RTR 8.8.8.8.in-addr.arpa. имя dns.google.
 
 ```
 root@vagrant:/home/vagrant# dig -x 8.8.4.4
