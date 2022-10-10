@@ -239,7 +239,7 @@ default via 10.0.2.2 dev eth0 proto dhcp src 10.0.2.15 metric 100
 3. Проверьте открытые TCP порты в Ubuntu, какие протоколы и приложения используют эти порты? Приведите несколько примеров.
 
 ```bash
-root@vagrant:~# sudo ss -tulpn | grep LISTEN
+root@vagrant:~# ss -tulpn | grep LISTEN
 tcp     LISTEN   0        128               0.0.0.0:22            0.0.0.0:*      users:(("sshd",pid=721,fd=3))
 tcp     LISTEN   0        4096        127.0.0.53%lo:53            0.0.0.0:*      users:(("systemd-resolve",pid=630,fd=13))
 tcp     LISTEN   0        128                  [::]:22               [::]:*      users:(("sshd",pid=721,fd=4))
